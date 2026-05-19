@@ -2,15 +2,16 @@
 #include <iostream>
 #include <sstream>
 #include <ctime>
-#include <iomanip>
 
 // Functie helper pentru obtinerea datei curente
 static std::string getDataCurenta() {
     std::time_t t = std::time(nullptr);
     std::tm* now = std::localtime(&t);
-    std::ostringstream oss;
-    oss << std::put_time(now, "%d.%m.%Y %H:%M");
-    return oss.str();
+
+    char buffer[80];
+    std::strftime(buffer, sizeof(buffer), "%d.%m.%Y %H:%M", now);
+
+    return std::string(buffer);
 }
 
 // Constructor implicit
