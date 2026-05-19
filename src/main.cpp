@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <limits>
+#include <cstdlib>
 
 // Functie pentru curatarea ecranului
 void curataEcran() {
