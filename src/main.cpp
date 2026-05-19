@@ -180,7 +180,7 @@ UI::afiseazaBannerStart();
                 for (const auto& rez : rezervari) {
                     std::cout << "  ID: " << rez.getId()
                               << " | Client: " << rez.getNumeClient()
-                              << " | Total: " << rez.getPretTotal() << " RON\n";
+                              << " | Total: " << rez.getPretTotal() << " MDL\n";
                 }
 
                 std::cout << "Introdu ID-ul rezervarii de anulat: ";
