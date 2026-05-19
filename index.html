@@ -14,31 +14,29 @@
 
         header {
             background: #1f2937;
-            padding: 40px;
+            padding: 30px;
             text-align: center;
         }
 
         header h1 {
-            margin: 0;
-            font-size: 36px;
             color: #facc15;
+            margin: 0;
         }
 
         header p {
-            font-size: 18px;
             color: #d1d5db;
         }
 
-        section {
-            max-width: 900px;
+        .container {
+            max-width: 1000px;
             margin: auto;
-            padding: 30px;
+            padding: 25px;
         }
 
         .card {
             background: #1f2937;
-            padding: 20px;
             border-radius: 12px;
+            padding: 20px;
             margin-bottom: 20px;
         }
 
@@ -46,27 +44,110 @@
             color: #facc15;
         }
 
-        ul {
-            line-height: 1.8;
+        select, input, button {
+            padding: 10px;
+            margin: 8px 0;
+            width: 100%;
+            border-radius: 6px;
+            border: none;
+            font-size: 16px;
         }
 
-        .team {
+        button {
+            background: #facc15;
+            color: #111827;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #eab308;
+        }
+
+        .seats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(8, 45px);
+            gap: 8px;
+            margin-top: 15px;
+            justify-content: center;
         }
 
-        .member {
-            background: #374151;
-            padding: 15px;
-            border-radius: 10px;
+        .seat {
+            width: 45px;
+            height: 45px;
+            border-radius: 6px;
+            background: #22c55e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 13px;
+            color: #111827;
+            font-weight: bold;
+        }
+
+        .seat.vip {
+            background: #facc15;
+        }
+
+        .seat.selected {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .seat.occupied {
+            background: #ef4444;
+            color: white;
+            cursor: not-allowed;
+        }
+
+        .legend {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .legend span {
+            padding: 8px 12px;
+            border-radius: 6px;
+            color: #111827;
+            font-weight: bold;
+        }
+
+        .green { background: #22c55e; }
+        .yellow { background: #facc15; }
+        .blue { background: #3b82f6; color: white !important; }
+        .red { background: #ef4444; color: white !important; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #374151;
+            padding: 10px;
             text-align: center;
+        }
+
+        th {
+            background: #374151;
+            color: #facc15;
+        }
+
+        .message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            background: #374151;
         }
 
         footer {
             text-align: center;
             padding: 20px;
-            background: #1f2937;
             color: #9ca3af;
         }
     </style>
@@ -75,82 +156,237 @@
 
 <header>
     <h1>Sistem de Rezervare Cinema</h1>
-    <p>Proiect C++ realizat în cadrul practicii de specialitate</p>
+    <p>Aplicație web demonstrativă pentru rezervarea locurilor la cinema</p>
 </header>
 
-<section>
+<div class="container">
+
     <div class="card">
-        <h2>Descrierea proiectului</h2>
-        <p>
-            Aplicația simulează un sistem simplu de rezervare a locurilor la cinema.
-            Utilizatorul poate vedea filmele disponibile, poate alege o sală,
-            poate rezerva locuri și poate anula rezervările efectuate.
-        </p>
+        <h2>1. Alege filmul</h2>
+        <select id="film">
+            <option value="Inception">Inception - Science Fiction - 148 min</option>
+            <option value="The Dark Knight">The Dark Knight - Acțiune - 152 min</option>
+            <option value="Interstellar">Interstellar - Science Fiction - 169 min</option>
+        </select>
     </div>
 
     <div class="card">
-        <h2>Funcționalități</h2>
-        <ul>
-            <li>Afișarea filmelor disponibile</li>
-            <li>Afișarea sălilor disponibile</li>
-            <li>Rezervarea locurilor</li>
-            <li>Verificarea locurilor ocupate</li>
-            <li>Calcularea prețului total</li>
-            <li>Vizualizarea rezervărilor</li>
-            <li>Anularea rezervărilor</li>
-        </ul>
+        <h2>2. Alege sala</h2>
+        <select id="sala" onchange="schimbaSala()">
+            <option value="Sala 1 - Standard">Sala 1 - Standard</option>
+            <option value="Sala 2 - Premium">Sala 2 - Premium</option>
+        </select>
     </div>
 
     <div class="card">
-        <h2>Tehnologii utilizate</h2>
-        <ul>
-            <li>C++</li>
-            <li>Dev-C++</li>
-            <li>GitHub</li>
-            <li>Trello</li>
-            <li>Markdown pentru documentație</li>
-        </ul>
+        <h2>3. Introdu numele clientului</h2>
+        <input type="text" id="client" placeholder="Exemplu: Ion Popescu">
     </div>
 
     <div class="card">
-        <h2>Echipa</h2>
-        <div class="team">
-            <div class="member">
-                <strong>SADOVNIC Alina</strong><br>
-                Product Owner
-            </div>
-            <div class="member">
-                <strong>LOBOICO Anastasia</strong><br>
-                Project Manager
-            </div>
-            <div class="member">
-                <strong>ȚURCAN Eric</strong><br>
-                Technical Lead
-            </div>
-            <div class="member">
-                <strong>CUTCOVEȚCHI Denis</strong><br>
-                UX/UI Lead
-            </div>
-            <div class="member">
-                <strong>BORȘ Constantin-Mihai</strong><br>
-                QA Lead
-            </div>
+        <h2>4. Alege locurile</h2>
+        <p style="text-align:center;">ECRAN</p>
+        <div id="seats" class="seats"></div>
+
+        <div class="legend">
+            <span class="green">Liber</span>
+            <span class="yellow">VIP</span>
+            <span class="blue">Selectat</span>
+            <span class="red">Ocupat</span>
         </div>
     </div>
 
     <div class="card">
-        <h2>Stadiul proiectului</h2>
-        <p>
-            Proiectul se află în etapa de testare și finalizare.
-            Funcționalitățile principale sunt implementate, iar partea de QA
-            a identificat un bug de validare pentru ID-ul filmului.
-        </p>
+        <h2>5. Finalizează rezervarea</h2>
+        <p>Loc normal: 50 RON</p>
+        <p>Loc VIP: 80 RON</p>
+        <p><strong>Total: <span id="total">0</span> RON</strong></p>
+        <button onclick="finalizeazaRezervarea()">Rezervă locurile</button>
+        <div id="mesaj" class="message">Selectează locurile pentru rezervare.</div>
     </div>
-</section>
+
+    <div class="card">
+        <h2>Rezervări efectuate</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Client</th>
+                    <th>Film</th>
+                    <th>Sala</th>
+                    <th>Locuri</th>
+                    <th>Total</th>
+                    <th>Acțiune</th>
+                </tr>
+            </thead>
+            <tbody id="tabelRezervari">
+            </tbody>
+        </table>
+    </div>
+
+</div>
 
 <footer>
-    © 2026 Sistem de Rezervare Cinema | Proiect de echipă
+    Proiect realizat de echipa CIB-251 | Sistem de Rezervare Cinema
 </footer>
+
+<script>
+    let locuriSelectate = [];
+    let rezervari = [];
+    let idRezervare = 1;
+    let locuriOcupate = [];
+
+    function creeazaSala() {
+        const seatsContainer = document.getElementById("seats");
+        seatsContainer.innerHTML = "";
+        locuriSelectate = [];
+        actualizeazaTotal();
+
+        const randuri = ["A", "B", "C", "D", "E", "F"];
+
+        for (let i = 0; i < randuri.length; i++) {
+            for (let j = 1; j <= 8; j++) {
+                const cod = randuri[i] + j;
+                const seat = document.createElement("div");
+
+                seat.classList.add("seat");
+                seat.innerText = cod;
+
+                if (i >= 4) {
+                    seat.classList.add("vip");
+                }
+
+                if (locuriOcupate.includes(cod)) {
+                    seat.classList.add("occupied");
+                }
+
+                seat.onclick = function () {
+                    selecteazaLoc(seat, cod, i >= 4);
+                };
+
+                seatsContainer.appendChild(seat);
+            }
+        }
+    }
+
+    function selecteazaLoc(seat, cod, esteVIP) {
+        if (seat.classList.contains("occupied")) {
+            document.getElementById("mesaj").innerText = "Locul " + cod + " este deja ocupat.";
+            return;
+        }
+
+        if (seat.classList.contains("selected")) {
+            seat.classList.remove("selected");
+            locuriSelectate = locuriSelectate.filter(loc => loc.cod !== cod);
+        } else {
+            seat.classList.add("selected");
+            locuriSelectate.push({
+                cod: cod,
+                pret: esteVIP ? 80 : 50
+            });
+        }
+
+        actualizeazaTotal();
+    }
+
+    function actualizeazaTotal() {
+        let total = 0;
+        locuriSelectate.forEach(loc => total += loc.pret);
+        document.getElementById("total").innerText = total;
+    }
+
+    function finalizeazaRezervarea() {
+        const client = document.getElementById("client").value.trim();
+        const film = document.getElementById("film").value;
+        const sala = document.getElementById("sala").value;
+
+        if (client === "") {
+            document.getElementById("mesaj").innerText = "Introduceți numele clientului.";
+            return;
+        }
+
+        if (locuriSelectate.length === 0) {
+            document.getElementById("mesaj").innerText = "Selectați cel puțin un loc.";
+            return;
+        }
+
+        let total = 0;
+        locuriSelectate.forEach(loc => total += loc.pret);
+
+        const rezervare = {
+            id: idRezervare++,
+            client: client,
+            film: film,
+            sala: sala,
+            locuri: locuriSelectate.map(loc => loc.cod),
+            total: total
+        };
+
+        rezervari.push(rezervare);
+
+        locuriSelectate.forEach(loc => {
+            locuriOcupate.push(loc.cod);
+        });
+
+        document.getElementById("mesaj").innerText = "Rezervarea a fost realizată cu succes!";
+        document.getElementById("client").value = "";
+
+        locuriSelectate = [];
+        creeazaSala();
+        afiseazaRezervari();
+    }
+
+    function afiseazaRezervari() {
+        const tabel = document.getElementById("tabelRezervari");
+        tabel.innerHTML = "";
+
+        rezervari.forEach(rez => {
+            const rand = document.createElement("tr");
+
+            rand.innerHTML = `
+                <td>${rez.id}</td>
+                <td>${rez.client}</td>
+                <td>${rez.film}</td>
+                <td>${rez.sala}</td>
+                <td>${rez.locuri.join(", ")}</td>
+                <td>${rez.total} RON</td>
+                <td><button onclick="anuleazaRezervare(${rez.id})">Anulează</button></td>
+            `;
+
+            tabel.appendChild(rand);
+        });
+    }
+
+    function anuleazaRezervare(id) {
+        const rezervare = rezervari.find(rez => rez.id === id);
+
+        if (!rezervare) {
+            return;
+        }
+
+        rezervare.locuri.forEach(loc => {
+            locuriOcupate = locuriOcupate.filter(l => l !== loc);
+        });
+
+        rezervari = rezervari.filter(rez => rez.id !== id);
+
+        document.getElementById("mesaj").innerText = "Rezervarea a fost anulată.";
+        creeazaSala();
+        afiseazaRezervari();
+    }
+
+    function schimbaSala() {
+        locuriSelectate = [];
+        locuriOcupate = [];
+        rezervari = [];
+        idRezervare = 1;
+        document.getElementById("mesaj").innerText = "Sala a fost schimbată. Rezervările au fost resetate.";
+        creeazaSala();
+        afiseazaRezervari();
+    }
+
+    creeazaSala();
+</script>
 
 </body>
 </html>
