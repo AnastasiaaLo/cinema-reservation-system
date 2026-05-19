@@ -79,7 +79,6 @@ cinema-reservation-system/
 │   └── main.cpp
 │
 ├── .gitignore
-├── LICENSE
 ├── Makefile
 ├── README.md
 └── compile.bat
