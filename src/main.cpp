@@ -5,38 +5,8 @@
 #include <vector>
 #include <limits>
 #include <cstdlib>
+#include "../include/UI.h"
 
-// Functie pentru curatarea ecranului
-void curataEcran() {
-#ifdef _WIN32
-    system("cls");
-#else
-    system("clear");
-#endif
-}
-
-// Functie pentru pauza pana cand utilizatorul apasa Enter
-void pauza() {
-    std::cout << "\nApasa Enter pentru a continua...";
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cin.get();
-}
-
-// Afiseaza meniul principal
-void afiseazaMeniu() {
-    std::cout << "\n";
-    std::cout << "========================================\n";
-    std::cout << "   SISTEM REZERVARE CINEMA - MENIU\n";
-    std::cout << "========================================\n";
-    std::cout << "  1. Vezi filmele disponibile\n";
-    std::cout << "  2. Vezi salile disponibile\n";
-    std::cout << "  3. Rezerva locuri\n";
-    std::cout << "  4. Vezi toate rezervarile\n";
-    std::cout << "  5. Anuleaza o rezervare\n";
-    std::cout << "  0. Iesire\n";
-    std::cout << "========================================\n";
-    std::cout << "  Alege optiunea: ";
-}
 
 int main() {
     // ===== Date de test (in versiunea finala vor fi incarcate din fisier) =====
@@ -57,48 +27,49 @@ int main() {
 
     std::vector<Rezervare> rezervari;
     int urmatorIdRezervare = 1;
-
+    
+UI::afiseazaBannerStart();
     // ===== Bucla principala a meniului =====
     int optiune;
     do {
-        afiseazaMeniu();
+        UI::afiseazaMeniu();
         std::cin >> optiune;
 
         // Validare input
         if (std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Optiune invalida! Te rog introdu un numar.\n";
+            UI::mesajEroare("Optiune invalida! Te rog introdu un numar.");
             continue;
         }
 
         switch (optiune) {
             case 1: {
                 // Afiseaza filmele
-                std::cout << "\n========== FILME DISPONIBILE ==========\n";
+                UI::afiseazaTitlu("FILME DISPONIBILE");
                 for (const auto& film : filme) {
                     film.afiseazaDetalii();
                 }
-                pauza();
+                UI::pauza();
                 break;
             }
 
             case 2: {
                 // Afiseaza salile
-                std::cout << "\n========== SALI DISPONIBILE ==========\n";
+                UI::afiseazaTitlu("SALI DISPONIBILE");
                 for (auto& sala : sali) {
                     std::cout << "\nID: " << sala.getId()
                               << " | Nume: " << sala.getNume()
                               << " | Locuri libere: " << sala.getNrLocuriLibere()
                               << "/" << (sala.getNrRanduri() * sala.getNrColoane()) << "\n";
                 }
-                pauza();
+                UI::pauza();
                 break;
             }
 
             case 3: {
                 // Rezerva locuri
-                std::cout << "\n========== REZERVARE LOC ==========\n";
+                UI::afiseazaTitlu("REZERVARE LOC");
 
                 // 1. Alege film
                 std::cout << "\nFilmele disponibile:\n";
@@ -128,8 +99,8 @@ int main() {
                 }
 
                 if (!salaSelectata) {
-                    std::cout << "Sala nu a fost gasita!\n";
-                    pauza();
+                    UI::mesajEroare("Sala nu a fost gasita!");
+                    UI::pauza();
                     break;
                 }
 
@@ -163,9 +134,9 @@ int main() {
                     if (salaSelectata->rezervaLoc(rand, col)) {
                         double pret = salaSelectata->getPretLoc(rand, col);
                         rez.adaugaLoc(rand, col, pret);
-                        std::cout << "Loc rezervat cu succes! Pret: " << pret << " RON\n";
+                        std::cout << "\n  [OK] Loc rezervat cu succes! Pret: " << pret << " MDL\n";
                     } else {
-                        std::cout << "Locul nu este disponibil sau coordonate invalide!\n";
+                        UI::mesajEroare("Locul nu este disponibil sau coordonate invalide!");
                     }
 
                     std::cout << "Mai vrei sa rezervi un loc? (d/n): ";
@@ -176,15 +147,15 @@ int main() {
 
                 // 6. Confirma rezervarea
                 rezervari.push_back(rez);
-                std::cout << "\nRezervare finalizata cu succes!\n";
+                UI::mesajSucces("Rezervare finalizata cu succes!");
                 rez.afiseazaRezervare();
-                pauza();
+                UI::pauza();
                 break;
             }
 
             case 4: {
                 // Vezi toate rezervarile
-                std::cout << "\n========== TOATE REZERVARILE ==========\n";
+                UI::afiseazaTitlu("TOATE REZERVARILE");
                 if (rezervari.empty()) {
                     std::cout << "Nu exista rezervari.\n";
                 } else {
@@ -192,16 +163,16 @@ int main() {
                         rez.afiseazaRezervare();
                     }
                 }
-                pauza();
+                UI::pauza();
                 break;
             }
 
             case 5: {
                 // Anuleaza rezervare
-                std::cout << "\n========== ANULARE REZERVARE ==========\n";
+                UI::afiseazaTitlu("ANULARE REZERVARE");
                 if (rezervari.empty()) {
                     std::cout << "Nu exista rezervari.\n";
-                    pauza();
+                    UI::pauza();
                     break;
                 }
 
@@ -229,16 +200,16 @@ int main() {
                             }
                         }
                         rezervari.erase(it);
-                        std::cout << "Rezervare anulata cu succes!\n";
+                        UI::mesajSucces("Rezervare anulata cu succes!");
                         gasit = true;
                         break;
                     }
                 }
 
                 if (!gasit) {
-                    std::cout << "Rezervarea nu a fost gasita.\n";
+                    UI::mesajEroare("Rezervarea nu a fost gasita.");
                 }
-                pauza();
+                UI::pauza();
                 break;
             }
 
@@ -247,8 +218,8 @@ int main() {
                 break;
 
             default:
-                std::cout << "Optiune invalida!\n";
-                pauza();
+                UI::mesajEroare("Optiune invalida!");
+                UI::pauza();
         }
 
     } while (optiune != 0);
