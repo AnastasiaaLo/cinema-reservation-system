@@ -63,22 +63,23 @@ Aplicația permite:
 
 ```bash
 cinema-reservation-system/
+│
 ├── include/
 │   ├── Film.h
 │   ├── Loc.h
+│   ├── Rezervare.h
 │   ├── Sala.h
-│   └── Rezervare.h
+│   └── UI.h
 │
 ├── src/
 │   ├── Film.cpp
 │   ├── Loc.cpp
-│   ├── Sala.cpp
 │   ├── Rezervare.cpp
+│   ├── Sala.cpp
 │   └── main.cpp
 │
-├── data/
-├── docs/
-├── tests/
-├── compile.bat
+├── .gitignore
+├── LICENSE
 ├── Makefile
-└── README.md
+├── README.md
+└── compile.bat
