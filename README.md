@@ -1,16 +1,26 @@
-# Sistem de Rezervare Cinema
+# 🎬 Sistem de Rezervare a Locurilor la Cinema
 
 Proiect realizat în cadrul practicii de specialitate, anul I.
 
-## Descriere
+---
 
-Acest proiect reprezintă o aplicație simplă pentru rezervarea locurilor la cinema. Programul permite utilizatorului să aleagă un film, să vadă locurile disponibile într-o sală și să facă o rezervare.
+# 📖 Descriere
 
-Aplicația este realizată în C++ și rulează în consolă. Proiectul a fost făcut pentru a exersa lucrul cu clase, obiecte, vectori, funcții și organizarea codului în mai multe fișiere.
+Acest proiect reprezintă o aplicație simplă pentru rezervarea locurilor la cinema. Programul permite utilizatorului să aleagă un film, să vizualizeze locurile disponibile într-o sală și să efectueze rezervări.
 
-Proiectul nu este un sistem real de cinema, ci o simulare realizată în scop educațional.
+Aplicația este realizată în limbajul C++ și rulează în consolă. Scopul principal al proiectului este aplicarea cunoștințelor studiate în anul I, precum:
 
-## Funcționalități
+- programarea orientată pe obiecte;
+- utilizarea claselor și obiectelor;
+- lucrul cu vectori și funcții;
+- organizarea codului în mai multe fișiere;
+- utilizarea GitHub pentru colaborare în echipă.
+
+Proiectul reprezintă o simulare educațională și nu un sistem real utilizat într-un cinematograf comercial.
+
+---
+
+# ✨ Funcționalități
 
 Aplicația permite:
 
@@ -23,19 +33,35 @@ Aplicația permite:
 - afișarea rezervărilor efectuate;
 - anularea unei rezervări.
 
-Funcționalitatea de salvare a datelor în fișier este încă în dezvoltare.
+⚠️ Funcționalitatea de salvare a datelor în fișier este încă în dezvoltare.
 
-## Tehnologii folosite
+---
+
+# 🛠️ Tehnologii utilizate
 
 - C++
-- C++17
+- Standard C++17
 - g++ / MinGW
 - Git și GitHub
 - Trello pentru organizarea sarcinilor
 
-## Structura proiectului
+---
 
-```text
+# 👥 Echipa proiectului
+
+| Student | Rol |
+|---|---|
+| LOBOICO Anastasia | Project Manager / Scrum Master-lite |
+| SADOVNIC Alina | Product Owner + Demo Lead |
+| ȚURCAN Eric | Technical Lead + Developer |
+| CUTCOVEȚCHI Denis | UX/UI Lead + Developer |
+| BORȘ Constantin-Mihai | QA Lead + Documentation Lead |
+
+---
+
+# 📂 Structura proiectului
+
+```bash
 cinema-reservation-system/
 ├── include/
 │   ├── Film.h
