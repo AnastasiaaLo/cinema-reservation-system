@@ -2,7 +2,8 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
-  <title>Cinema Seat Reservation</title>
+  <title>Sistem de Rezervare Cinema</title>
+
   <style>
     :root {
       --black: #111111;
@@ -11,13 +12,11 @@
       --pink: #f8d7da;
       --mint: #d8f3dc;
       --blue: #dbeafe;
-      --lavender: #ede9fe;
       --yellow: #fef3c7;
-      --gray: #f3f4f6;
-      --dark-gray: #374151;
-      --green: #86efac;
       --red: #fecaca;
-      --accent: #111111;
+      --lavender: #ede9fe;
+      --gray: #f3f4f6;
+      --dark: #1f2937;
     }
 
     * {
@@ -34,7 +33,7 @@
     header {
       background: var(--black);
       color: var(--white);
-      padding: 25px 40px;
+      padding: 24px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -44,7 +43,6 @@
     header h1 {
       margin: 0;
       font-size: 30px;
-      letter-spacing: 1px;
     }
 
     header p {
@@ -89,12 +87,14 @@
     .hero {
       background: linear-gradient(135deg, var(--pink), var(--blue), var(--mint));
       padding: 40px;
-      border-radius: 25px;
+      border-radius: 28px;
       margin-bottom: 25px;
+      border: 2px solid var(--black);
+      box-shadow: 8px 8px 0 var(--black);
     }
 
     .hero h2 {
-      font-size: 36px;
+      font-size: 38px;
       margin: 0 0 15px;
     }
 
@@ -107,14 +107,10 @@
     .card {
       background: var(--cream);
       border: 2px solid var(--black);
-      border-radius: 20px;
-      padding: 20px;
+      border-radius: 22px;
+      padding: 22px;
       box-shadow: 6px 6px 0 var(--black);
-      margin-bottom: 20px;
-    }
-
-    .card h3, .card h2 {
-      margin-top: 0;
+      margin-bottom: 22px;
     }
 
     .film-card {
@@ -134,7 +130,7 @@
     label {
       font-weight: bold;
       display: block;
-      margin-top: 10px;
+      margin-top: 12px;
     }
 
     input, select {
@@ -152,17 +148,17 @@
       color: var(--white);
       border: none;
       padding: 12px 20px;
-      border-radius: 20px;
+      border-radius: 22px;
       cursor: pointer;
       font-weight: bold;
       margin: 8px 5px 8px 0;
     }
 
     .btn:hover {
-      background: #333;
+      opacity: 0.85;
     }
 
-    .btn-pastel {
+    .btn-pink {
       background: var(--pink);
       color: var(--black);
       border: 2px solid var(--black);
@@ -190,11 +186,12 @@
       background: var(--black);
       color: var(--white);
       text-align: center;
-      padding: 12px;
+      padding: 13px;
       border-radius: 50%;
       margin: 20px auto;
-      width: 60%;
-      letter-spacing: 3px;
+      width: 70%;
+      letter-spacing: 4px;
+      font-weight: bold;
     }
 
     .seats {
@@ -205,25 +202,20 @@
     }
 
     .seat {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
       border: 2px solid var(--black);
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: bold;
       background: var(--mint);
-    }
-
-    .seat.vip {
-      background: var(--yellow);
-    }
-
-    .seat.love {
-      background: var(--pink);
+      text-align: center;
+      line-height: 1.1;
+      white-space: pre-line;
     }
 
     .seat.selected {
@@ -232,9 +224,9 @@
     }
 
     .seat.occupied {
-      background: var(--red);
+      background: var(--red) !important;
       cursor: not-allowed;
-      opacity: 0.8;
+      opacity: 1;
     }
 
     .legend {
@@ -265,8 +257,6 @@
       border-collapse: collapse;
       background: var(--white);
       border: 2px solid var(--black);
-      border-radius: 15px;
-      overflow: hidden;
     }
 
     th {
@@ -279,6 +269,56 @@
       border: 1px solid #d1d5db;
       padding: 10px;
       text-align: center;
+    }
+
+    .message {
+      background: var(--lavender);
+      border: 2px solid var(--black);
+      padding: 15px;
+      border-radius: 15px;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .info {
+      background: var(--blue);
+      padding: 15px;
+      border-radius: 15px;
+      border: 2px solid var(--black);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .mini-screen {
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+      border-radius: 50%;
+      padding: 8px;
+      margin: 10px 0;
+      width: 260px;
+      letter-spacing: 3px;
+      font-size: 12px;
+    }
+
+    .mini-hall {
+      display: inline-grid;
+      gap: 5px;
+      margin: 10px 20px 25px 0;
+      vertical-align: top;
+    }
+
+    .mini-seat {
+      width: 30px;
+      height: 30px;
+      border: 1px solid var(--black);
+      border-radius: 8px;
+      background: var(--mint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: bold;
     }
 
     .status-paid {
@@ -302,23 +342,6 @@
       font-weight: bold;
     }
 
-    .message {
-      background: var(--lavender);
-      border: 2px solid var(--black);
-      padding: 15px;
-      border-radius: 15px;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-
-    .info {
-      background: var(--blue);
-      padding: 15px;
-      border-radius: 15px;
-      border: 2px solid var(--black);
-      margin-bottom: 20px;
-    }
-
     footer {
       text-align: center;
       padding: 20px;
@@ -329,9 +352,9 @@
 
     @media (max-width: 700px) {
       .seat {
-        width: 34px;
-        height: 34px;
-        font-size: 10px;
+        width: 36px;
+        height: 36px;
+        font-size: 8px;
       }
 
       header {
@@ -351,15 +374,15 @@
 
 <header>
   <div>
-    <h1>Cinema Reservation</h1>
-    <p>Sistem web de rezervare a locurilor la cinema</p>
+    <h1>Sistem de Rezervare Cinema</h1>
+    <p>Rezervare online a locurilor la cinema</p>
   </div>
 
   <nav>
     <button onclick="showPage('home')">Acasă</button>
     <button onclick="showPage('booking')">Rezervare</button>
     <button onclick="showPage('reservations')">Rezervări</button>
-    <button onclick="showPage('about')">Despre proiect</button>
+    <button onclick="showPage('about')">Despre cinema</button>
   </nav>
 </header>
 
@@ -367,25 +390,25 @@
 
   <section id="home" class="page active">
     <div class="hero">
-      <h2>Rezervă locul tău preferat la cinema</h2>
-      <p>Alege filmul, sala, locurile dorite și finalizează rezervarea online.</p>
+      <h2>Rezervă locul tău preferat</h2>
+      <p>Alege filmul, sala și locurile dorite. Rezervările sunt salvate online și sunt vizibile de pe orice dispozitiv.</p>
       <button class="btn" onclick="showPage('booking')">Începe rezervarea</button>
     </div>
 
     <div class="grid">
       <div class="card">
-        <h3>Filme disponibile</h3>
-        <p>3 filme populare disponibile pentru rezervare.</p>
+        <h3>Mai multe săli</h3>
+        <p>Cinematograful include săli Standard, Premium, VIP Lounge și IMAX.</p>
       </div>
 
       <div class="card">
-        <h3>Săli diferite</h3>
-        <p>Standard, Premium, VIP și IMAX cu prețuri diferite.</p>
+        <h3>Locuri speciale</h3>
+        <p>Pe hartă sunt afișate locuri normale, VIP și LS. LS înseamnă Love Seat.</p>
       </div>
 
       <div class="card">
-        <h3>Rezervare 30 minute</h3>
-        <p>Poți păstra rezervarea fără achitare timp de 30 de minute.</p>
+        <h3>Stocare online</h3>
+        <p>Rezervările sunt salvate în Firebase Firestore și sunt comune pentru toate dispozitivele.</p>
       </div>
     </div>
   </section>
@@ -401,12 +424,12 @@
     <div class="card">
       <h3>2. Alege sala</h3>
       <select id="hallSelect" onchange="selectHall()"></select>
-
       <div id="hallInfo" class="info"></div>
     </div>
 
     <div class="card">
       <h3>3. Date client</h3>
+
       <label>Nume client</label>
       <input type="text" id="clientName" placeholder="Exemplu: Ion Popescu">
 
@@ -417,14 +440,15 @@
     <div class="card">
       <h3>4. Alege locurile</h3>
       <div class="screen">ECRAN</div>
+
       <div id="seats" class="seats"></div>
 
       <div class="legend">
         <span style="background: var(--mint);">Liber</span>
-        <span style="background: var(--yellow);">VIP</span>
-        <span style="background: var(--pink);">Love Seat</span>
         <span style="background: var(--blue);">Selectat</span>
         <span style="background: var(--red);">Ocupat</span>
+        <span style="background: var(--mint);">VIP = loc VIP</span>
+        <span style="background: var(--mint);">LS = Love Seat</span>
       </div>
 
       <div class="summary-box">
@@ -448,7 +472,7 @@
 
       <button class="btn btn-mint" onclick="payReservation()">Continuă spre achitare</button>
       <button class="btn btn-yellow" onclick="holdReservation()">Lasă rezervat 30 minute</button>
-      <button class="btn btn-pastel" onclick="cancelCurrentReservation()">Anulează rezervarea</button>
+      <button class="btn btn-pink" onclick="cancelCurrentReservation()">Anulează rezervarea</button>
     </div>
   </section>
 
@@ -457,7 +481,6 @@
 
     <div class="card">
       <button class="btn btn-blue" onclick="renderReservations()">Actualizează lista</button>
-      <button class="btn btn-pastel" onclick="clearAllData()">Șterge toate datele</button>
 
       <table>
         <thead>
@@ -472,140 +495,138 @@
             <th>Acțiune</th>
           </tr>
         </thead>
+
         <tbody id="reservationsTable"></tbody>
       </table>
     </div>
   </section>
 
   <section id="about" class="page">
-    <h2>Despre proiect</h2>
+    <h2>Despre cinema</h2>
 
     <div class="card">
-      <h3>Structuri de date și algoritmi utilizați</h3>
+      <h3>Descriere generală</h3>
+      <p>
+        Cinema Reservation este un cinematograf modern, organizat în mai multe săli cu niveluri diferite de confort.
+        Sistemul web permite utilizatorului să aleagă filmul dorit, sala potrivită, locurile disponibile și să finalizeze rezervarea online.
+      </p>
+      <p>
+        Fiecare sală are locuri normale, locuri VIP și locuri LS. Locurile libere sunt marcate cu verde,
+        locurile selectate sunt marcate cu albastru, iar locurile ocupate sunt marcate cu roșu.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Tipuri de locuri</h3>
       <ul>
-        <li><strong>Array de obiecte</strong> pentru filme, săli, locuri și rezervări.</li>
-        <li><strong>Obiecte JavaScript</strong> pentru fiecare film, sală și rezervare.</li>
-        <li><strong>Algoritm de generare a locurilor</strong> în funcție de rânduri și coloane.</li>
-        <li><strong>Algoritm de verificare</strong> a locurilor ocupate.</li>
-        <li><strong>Algoritm de calcul</strong> al prețului total în MDL.</li>
-        <li><strong>Algoritm de expirare</strong> a rezervărilor neplătite după 30 de minute.</li>
-        <li><strong>localStorage</strong> pentru stocarea rezervărilor în browser.</li>
+        <li><strong>Loc normal</strong> — loc standard pentru vizionarea filmului.</li>
+        <li><strong>VIP</strong> — loc cu confort sporit și preț mai mare.</li>
+        <li><strong>LS</strong> — Love Seat, loc special pentru două persoane sau zonă premium.</li>
       </ul>
     </div>
 
     <div class="card">
-      <h3>Stocarea rezervărilor</h3>
+      <h3>Capacitatea și structura sălilor</h3>
       <p>
-        Rezervările sunt salvate în <strong>localStorage</strong>, adică în memoria browserului.
-        Astfel, dacă utilizatorul reîncarcă pagina, rezervările rămân salvate pe același calculator.
+        Mai jos sunt prezentate sălile cinematografului. Pentru fiecare sală este indicată capacitatea,
+        tipul sălii, prețurile și o schiță simplificată a așezării locurilor.
       </p>
+
+      <div id="hallCapacityDescription"></div>
+    </div>
+
+    <div class="card">
+      <h3>Structuri de date și algoritmi utilizați</h3>
       <p>
-        Pentru o aplicație reală cu mai mulți utilizatori, ar fi necesară o bază de date,
-        de exemplu Firebase, Supabase sau un server propriu.
+        În aplicație sunt utilizate structuri de date de tip array de obiecte pentru filme, săli și rezervări.
+        Fiecare sală este reprezentată ca obiect cu număr de rânduri, număr de coloane și prețuri diferite pentru tipurile de locuri.
       </p>
+      <ul>
+        <li>algoritm de generare automată a locurilor;</li>
+        <li>algoritm de verificare a locurilor ocupate;</li>
+        <li>algoritm de calcul al prețului total în MDL;</li>
+        <li>algoritm de blocare a locurilor deja rezervate;</li>
+        <li>algoritm de expirare a rezervărilor păstrate 30 de minute;</li>
+        <li>stocare online a rezervărilor în Firebase Firestore.</li>
+      </ul>
     </div>
   </section>
 
 </div>
 
 <footer>
-  Proiect CIB-251 | Sistem de Rezervare Cinema | Prețuri în MDL
+  Proiect CIB-251 | Sistem de Rezervare Cinema
 </footer>
 
-<script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    onSnapshot,
+    updateDoc,
+    deleteDoc,
+    doc,
+    query,
+    orderBy,
+    runTransaction
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyC0IuHX50ClhCKjyTvW2mcLKhtU3dj71ro",
+    authDomain: "cinema-reservation-syste-33a55.firebaseapp.com",
+    projectId: "cinema-reservation-syste-33a55",
+    storageBucket: "cinema-reservation-syste-33a55.firebasestorage.app",
+    messagingSenderId: "87258138229",
+    appId: "1:87258138229:web:cd18fee83b3b7359a2da3c",
+    measurementId: "G-07LM51Y78Y"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
   const films = [
-    {
-      id: 1,
-      title: "Inception",
-      genre: "Science Fiction",
-      duration: 148,
-      rating: 8.8
-    },
-    {
-      id: 2,
-      title: "The Dark Knight",
-      genre: "Acțiune",
-      duration: 152,
-      rating: 9.0
-    },
-    {
-      id: 3,
-      title: "Interstellar",
-      genre: "Science Fiction",
-      duration: 169,
-      rating: 8.6
-    }
+    { id: 1, title: "Inception", genre: "Science Fiction", duration: 148, rating: 8.8 },
+    { id: 2, title: "The Dark Knight", genre: "Acțiune", duration: 152, rating: 9.0 },
+    { id: 3, title: "Interstellar", genre: "Science Fiction", duration: 169, rating: 8.6 }
   ];
 
   const halls = [
-    {
-      id: 1,
-      name: "Sala 1 - Standard",
-      rows: 6,
-      cols: 8,
-      normalPrice: 90,
-      vipPrice: 130,
-      lovePrice: 160,
-      type: "Standard"
-    },
-    {
-      id: 2,
-      name: "Sala 2 - Premium",
-      rows: 7,
-      cols: 9,
-      normalPrice: 120,
-      vipPrice: 170,
-      lovePrice: 210,
-      type: "Premium"
-    },
-    {
-      id: 3,
-      name: "Sala 3 - VIP Lounge",
-      rows: 5,
-      cols: 6,
-      normalPrice: 160,
-      vipPrice: 230,
-      lovePrice: 280,
-      type: "VIP"
-    },
-    {
-      id: 4,
-      name: "Sala 4 - IMAX",
-      rows: 8,
-      cols: 10,
-      normalPrice: 150,
-      vipPrice: 220,
-      lovePrice: 260,
-      type: "IMAX"
-    }
+    { id: 1, name: "Sala 1 - Standard", rows: 6, cols: 8, normalPrice: 90, vipPrice: 130, lovePrice: 160, type: "Standard" },
+    { id: 2, name: "Sala 2 - Premium", rows: 7, cols: 9, normalPrice: 120, vipPrice: 170, lovePrice: 210, type: "Premium" },
+    { id: 3, name: "Sala 3 - VIP Lounge", rows: 5, cols: 6, normalPrice: 160, vipPrice: 230, lovePrice: 280, type: "VIP" },
+    { id: 4, name: "Sala 4 - IMAX", rows: 8, cols: 10, normalPrice: 150, vipPrice: 220, lovePrice: 260, type: "IMAX" }
   ];
 
   let selectedFilm = films[0];
   let selectedHall = halls[0];
   let selectedSeats = [];
   let currentReservation = null;
+  let allReservations = [];
 
-  function getReservations() {
-    const data = localStorage.getItem("cinemaReservations");
-    return data ? JSON.parse(data) : [];
-  }
-
-  function saveReservations(reservations) {
-    localStorage.setItem("cinemaReservations", JSON.stringify(reservations));
-  }
-
-  function showPage(pageId) {
-    document.querySelectorAll(".page").forEach(page => {
-      page.classList.remove("active");
-    });
-
+  window.showPage = function(pageId) {
+    document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
     document.getElementById(pageId).classList.add("active");
 
     if (pageId === "reservations") {
       renderReservations();
     }
+  };
 
-    removeExpiredReservations();
+  function listenReservations() {
+    const q = query(collection(db, "reservations"), orderBy("createdAt", "desc"));
+
+    onSnapshot(q, (snapshot) => {
+      allReservations = snapshot.docs.map(document => ({
+        firestoreId: document.id,
+        ...document.data()
+      }));
+
+      removeExpiredReservations();
+      renderSeats();
+      renderReservations();
+    });
   }
 
   function renderFilms() {
@@ -627,7 +648,7 @@
         <p>Rating: ${film.rating}/10</p>
       `;
 
-      div.onclick = function () {
+      div.onclick = function() {
         selectedFilm = film;
         renderFilms();
         updateSummary();
@@ -644,7 +665,7 @@
     halls.forEach(hall => {
       const option = document.createElement("option");
       option.value = hall.id;
-      option.textContent = `${hall.name} | Normal: ${hall.normalPrice} MDL | VIP: ${hall.vipPrice} MDL`;
+      option.textContent = `${hall.name} | Normal ${hall.normalPrice} MDL | VIP ${hall.vipPrice} MDL | LS ${hall.lovePrice} MDL`;
       hallSelect.appendChild(option);
     });
 
@@ -652,7 +673,7 @@
     selectHall();
   }
 
-  function selectHall() {
+  window.selectHall = function() {
     const hallId = Number(document.getElementById("hallSelect").value);
     selectedHall = halls.find(hall => hall.id === hallId);
     selectedSeats = [];
@@ -662,23 +683,17 @@
       Tip sală: ${selectedHall.type}<br>
       Loc normal: ${selectedHall.normalPrice} MDL<br>
       Loc VIP: ${selectedHall.vipPrice} MDL<br>
-      Love Seat: ${selectedHall.lovePrice} MDL<br>
+      LS - Love Seat: ${selectedHall.lovePrice} MDL<br>
       Capacitate: ${selectedHall.rows * selectedHall.cols} locuri
     `;
 
     renderSeats();
     updateSummary();
-  }
+  };
 
   function getSeatType(rowIndex) {
-    if (rowIndex >= selectedHall.rows - 1) {
-      return "love";
-    }
-
-    if (rowIndex >= selectedHall.rows - 3) {
-      return "vip";
-    }
-
+    if (rowIndex >= selectedHall.rows - 1) return "love";
+    if (rowIndex >= selectedHall.rows - 3) return "vip";
     return "normal";
   }
 
@@ -688,16 +703,18 @@
     return selectedHall.normalPrice;
   }
 
-  function getOccupiedSeats() {
-    const reservations = getReservations();
+  function getActiveReservations() {
+    return allReservations.filter(reservation =>
+      reservation.status === "Achitată" ||
+      reservation.status === "Rezervată 30 min"
+    );
+  }
 
+  function getOccupiedSeats() {
     let occupied = [];
 
-    reservations.forEach(reservation => {
-      if (
-        reservation.hallId === selectedHall.id &&
-        reservation.status !== "Anulată"
-      ) {
+    getActiveReservations().forEach(reservation => {
+      if (reservation.hallId === selectedHall.id) {
         occupied = occupied.concat(reservation.seats);
       }
     });
@@ -708,7 +725,7 @@
   function renderSeats() {
     const seatsContainer = document.getElementById("seats");
     seatsContainer.innerHTML = "";
-    seatsContainer.style.gridTemplateColumns = `repeat(${selectedHall.cols}, 42px)`;
+    seatsContainer.style.gridTemplateColumns = `repeat(${selectedHall.cols}, 54px)`;
 
     const occupiedSeats = getOccupiedSeats();
 
@@ -721,21 +738,20 @@
 
         const seat = document.createElement("div");
         seat.className = "seat";
-        seat.textContent = code;
 
         if (type === "vip") {
-          seat.classList.add("vip");
-        }
-
-        if (type === "love") {
-          seat.classList.add("love");
+          seat.textContent = code + "\nVIP";
+        } else if (type === "love") {
+          seat.textContent = code + "\nLS";
+        } else {
+          seat.textContent = code;
         }
 
         if (occupiedSeats.includes(code)) {
           seat.classList.add("occupied");
         }
 
-        seat.onclick = function () {
+        seat.onclick = function() {
           toggleSeat(code, type, seat);
         };
 
@@ -746,7 +762,7 @@
 
   function toggleSeat(code, type, element) {
     if (element.classList.contains("occupied")) {
-      showMessage("bookingMessage", "Acest loc este deja ocupat.");
+      showMessage("bookingMessage", "Acest loc este deja ocupat și nu poate fi rezervat.");
       return;
     }
 
@@ -775,15 +791,14 @@
     if (selectedSeats.length === 0) {
       document.getElementById("selectedSeatsText").textContent = "Niciun loc";
     } else {
-      document.getElementById("selectedSeatsText").textContent =
-        selectedSeats.map(seat => seat.code).join(", ");
+      document.getElementById("selectedSeatsText").textContent = selectedSeats.map(seat => seat.code).join(", ");
     }
 
     const total = selectedSeats.reduce((sum, seat) => sum + seat.price, 0);
     document.getElementById("totalPrice").textContent = total + " MDL";
   }
 
-  function createReservation() {
+  window.createReservation = function() {
     const clientName = document.getElementById("clientName").value.trim();
     const clientPhone = document.getElementById("clientPhone").value.trim();
 
@@ -802,78 +817,117 @@
       return;
     }
 
+    const occupiedSeats = getOccupiedSeats();
+    const conflict = selectedSeats.find(seat => occupiedSeats.includes(seat.code));
+
+    if (conflict) {
+      showMessage("bookingMessage", "Locul " + conflict.code + " a fost deja rezervat de alt utilizator.");
+      renderSeats();
+      return;
+    }
+
     const total = selectedSeats.reduce((sum, seat) => sum + seat.price, 0);
 
     currentReservation = {
-      id: Date.now(),
-      clientName: clientName,
-      clientPhone: clientPhone,
+      clientName,
+      clientPhone,
       filmId: selectedFilm.id,
       filmTitle: selectedFilm.title,
       hallId: selectedHall.id,
       hallName: selectedHall.name,
       seats: selectedSeats.map(seat => seat.code),
       seatDetails: selectedSeats,
-      total: total,
+      total,
       status: "În confirmare",
-      createdAt: new Date().toISOString(),
+      createdAt: Date.now(),
       expiresAt: null
     };
 
     renderConfirmation();
     showPage("confirmation");
-  }
+  };
 
   function renderConfirmation() {
-    const box = document.getElementById("confirmationDetails");
-
-    box.innerHTML = `
+    document.getElementById("confirmationDetails").innerHTML = `
       <p><strong>Client:</strong> ${currentReservation.clientName}</p>
       <p><strong>Telefon:</strong> ${currentReservation.clientPhone}</p>
       <p><strong>Film:</strong> ${currentReservation.filmTitle}</p>
       <p><strong>Sala:</strong> ${currentReservation.hallName}</p>
       <p><strong>Locuri:</strong> ${currentReservation.seats.join(", ")}</p>
       <p><strong>Total:</strong> ${currentReservation.total} MDL</p>
-      <p><strong>Status:</strong> rezervarea așteaptă decizia utilizatorului</p>
     `;
   }
 
-  function payReservation() {
-    currentReservation.status = "Achitată";
-    currentReservation.expiresAt = null;
+  async function saveReservationWithLocks(status, expiresAt) {
+    currentReservation.status = status;
+    currentReservation.expiresAt = expiresAt;
 
-    const reservations = getReservations();
-    reservations.push(currentReservation);
-    saveReservations(reservations);
+    const reservationRef = doc(collection(db, "reservations"));
+    const lockRefs = currentReservation.seats.map(seatCode =>
+      doc(db, "seatLocks", `${currentReservation.hallId}_${seatCode}`)
+    );
 
-    resetBookingForm();
+    await runTransaction(db, async (transaction) => {
+      for (const lockRef of lockRefs) {
+        const lockSnap = await transaction.get(lockRef);
 
-    alert("Rezervarea a fost achitată cu succes!");
-    showPage("reservations");
+        if (lockSnap.exists()) {
+          const lockData = lockSnap.data();
+
+          if (
+            lockData.status === "Achitată" ||
+            lockData.status === "Rezervată 30 min"
+          ) {
+            throw new Error("Unul dintre locuri a fost deja rezervat.");
+          }
+        }
+      }
+
+      transaction.set(reservationRef, currentReservation);
+
+      lockRefs.forEach((lockRef, index) => {
+        transaction.set(lockRef, {
+          reservationId: reservationRef.id,
+          hallId: currentReservation.hallId,
+          seatCode: currentReservation.seats[index],
+          status: currentReservation.status,
+          expiresAt: currentReservation.expiresAt,
+          createdAt: Date.now()
+        });
+      });
+    });
   }
 
-  function holdReservation() {
-    const now = new Date();
-    const expires = new Date(now.getTime() + 30 * 60 * 1000);
+  window.payReservation = async function() {
+    try {
+      await saveReservationWithLocks("Achitată", null);
+      resetBookingForm();
+      alert("Rezervarea a fost achitată cu succes!");
+      showPage("reservations");
+    } catch (error) {
+      alert(error.message);
+      showPage("booking");
+    }
+  };
 
-    currentReservation.status = "Rezervată 30 min";
-    currentReservation.expiresAt = expires.toISOString();
+  window.holdReservation = async function() {
+    try {
+      const expiresAt = Date.now() + 30 * 60 * 1000;
+      await saveReservationWithLocks("Rezervată 30 min", expiresAt);
+      resetBookingForm();
+      alert("Rezervarea a fost păstrată pentru 30 de minute.");
+      showPage("reservations");
+    } catch (error) {
+      alert(error.message);
+      showPage("booking");
+    }
+  };
 
-    const reservations = getReservations();
-    reservations.push(currentReservation);
-    saveReservations(reservations);
-
-    resetBookingForm();
-
-    alert("Rezervarea a fost păstrată pentru 30 de minute.");
-    showPage("reservations");
-  }
-
-  function cancelCurrentReservation() {
+  window.cancelCurrentReservation = function() {
     currentReservation = null;
     alert("Rezervarea a fost anulată.");
     showPage("booking");
-  }
+  };
 
   function resetBookingForm() {
     document.getElementById("clientName").value = "";
@@ -884,24 +938,16 @@
     updateSummary();
   }
 
-  function renderReservations() {
-    removeExpiredReservations();
-
+  window.renderReservations = function() {
     const table = document.getElementById("reservationsTable");
-    const reservations = getReservations();
-
     table.innerHTML = "";
 
-    if (reservations.length === 0) {
-      table.innerHTML = `
-        <tr>
-          <td colspan="8">Nu există rezervări salvate.</td>
-        </tr>
-      `;
+    if (allReservations.length === 0) {
+      table.innerHTML = `<tr><td colspan="8">Nu există rezervări salvate.</td></tr>`;
       return;
     }
 
-    reservations.forEach(reservation => {
+    allReservations.forEach(reservation => {
       const tr = document.createElement("tr");
 
       let statusClass = "status-hold";
@@ -917,11 +963,11 @@
       let statusText = reservation.status;
 
       if (reservation.status === "Rezervată 30 min" && reservation.expiresAt) {
-        statusText += "<br>Expiră: " + formatTime(reservation.expiresAt);
+        statusText += "<br>Expiră automat";
       }
 
       tr.innerHTML = `
-        <td>${reservation.id}</td>
+        <td>${reservation.firestoreId}</td>
         <td>${reservation.clientName}</td>
         <td>${reservation.filmTitle}</td>
         <td>${reservation.hallName}</td>
@@ -929,7 +975,7 @@
         <td>${reservation.total} MDL</td>
         <td><span class="${statusClass}">${statusText}</span></td>
         <td>
-          <button class="btn btn-pastel" onclick="cancelSavedReservation(${reservation.id})">
+          <button class="btn btn-pink" onclick="cancelSavedReservation('${reservation.firestoreId}')">
             Anulează
           </button>
         </td>
@@ -937,70 +983,109 @@
 
       table.appendChild(tr);
     });
-  }
+  };
 
-  function cancelSavedReservation(id) {
-    let reservations = getReservations();
+  window.cancelSavedReservation = async function(firestoreId) {
+    const reservation = allReservations.find(item => item.firestoreId === firestoreId);
 
-    reservations = reservations.map(reservation => {
-      if (reservation.id === id) {
-        reservation.status = "Anulată";
-      }
+    if (!reservation) {
+      return;
+    }
 
-      return reservation;
+    await updateDoc(doc(db, "reservations", firestoreId), {
+      status: "Anulată"
     });
 
-    saveReservations(reservations);
+    for (const seatCode of reservation.seats) {
+      await updateDoc(doc(db, "seatLocks", `${reservation.hallId}_${seatCode}`), {
+        status: "Anulată"
+      });
+    }
+
     renderSeats();
-    renderReservations();
-  }
+  };
 
-  function removeExpiredReservations() {
-    let reservations = getReservations();
-    const now = new Date();
+  async function removeExpiredReservations() {
+    const now = Date.now();
 
-    reservations = reservations.filter(reservation => {
+    for (const reservation of allReservations) {
       if (
         reservation.status === "Rezervată 30 min" &&
         reservation.expiresAt &&
-        new Date(reservation.expiresAt) < now
+        reservation.expiresAt < now
       ) {
-        return false;
+        await updateDoc(doc(db, "reservations", reservation.firestoreId), {
+          status: "Anulată"
+        });
+
+        for (const seatCode of reservation.seats) {
+          await updateDoc(doc(db, "seatLocks", `${reservation.hallId}_${seatCode}`), {
+            status: "Anulată"
+          });
+        }
       }
-
-      return true;
-    });
-
-    saveReservations(reservations);
-  }
-
-  function clearAllData() {
-    const confirmClear = confirm("Sigur doriți să ștergeți toate rezervările?");
-
-    if (confirmClear) {
-      localStorage.removeItem("cinemaReservations");
-      renderReservations();
-      renderSeats();
     }
-  }
-
-  function formatTime(dateString) {
-    const date = new Date(dateString);
-
-    return date.toLocaleTimeString("ro-RO", {
-      hour: "2-digit",
-      minute: "2-digit"
-    });
   }
 
   function showMessage(id, text) {
     document.getElementById(id).textContent = text;
   }
 
+  function renderHallDescriptions() {
+    const box = document.getElementById("hallCapacityDescription");
+    box.innerHTML = "";
+
+    halls.forEach(hall => {
+      const div = document.createElement("div");
+      div.className = "card";
+
+      div.innerHTML = `
+        <h4>${hall.name}</h4>
+        <p><strong>Tip sală:</strong> ${hall.type}</p>
+        <p><strong>Capacitate:</strong> ${hall.rows * hall.cols} locuri</p>
+        <p>
+          <strong>Prețuri:</strong>
+          Normal - ${hall.normalPrice} MDL,
+          VIP - ${hall.vipPrice} MDL,
+          LS - ${hall.lovePrice} MDL
+        </p>
+        <p><strong>Schița sălii:</strong></p>
+        <div class="mini-screen">ECRAN</div>
+        <div class="mini-hall" id="miniHall${hall.id}"></div>
+        <p style="font-size: 14px;">VIP = loc VIP, LS = Love Seat</p>
+      `;
+
+      box.appendChild(div);
+
+      const mini = div.querySelector(`#miniHall${hall.id}`);
+      mini.style.gridTemplateColumns = `repeat(${hall.cols}, 30px)`;
+
+      for (let i = 0; i < hall.rows; i++) {
+        const rowLetter = String.fromCharCode(65 + i);
+
+        for (let j = 1; j <= hall.cols; j++) {
+          const miniSeat = document.createElement("div");
+          miniSeat.className = "mini-seat";
+
+          if (i >= hall.rows - 1) {
+            miniSeat.textContent = "LS";
+          } else if (i >= hall.rows - 3) {
+            miniSeat.textContent = "VIP";
+          } else {
+            miniSeat.textContent = rowLetter + j;
+          }
+
+          mini.appendChild(miniSeat);
+        }
+      }
+    });
+  }
+
   renderFilms();
   renderHalls();
+  renderHallDescriptions();
   updateSummary();
-  removeExpiredReservations();
+  listenReservations();
 
   setInterval(removeExpiredReservations, 10000);
 </script>
