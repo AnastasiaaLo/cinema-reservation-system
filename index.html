@@ -211,7 +211,23 @@
   white-space: pre-line;
   color: var(--black);
 }
+.seats-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 12px;
+}
 
+.seats {
+  display: grid;
+  gap: 8px;
+  justify-content: start;
+  margin-top: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  width: max-content;
+  min-width: max-content;
+}
 .seat.selected {
   background: #dbeafe;
   transform: scale(1.08);
@@ -377,10 +393,10 @@
 
     @media (max-width: 700px) {
       .seat {
-        width: 36px;
-        height: 36px;
-        font-size: 8px;
-      }
+  width: 54px;
+  height: 54px;
+  font-size: 11px;
+}
 
       header {
         display: block;
@@ -466,7 +482,9 @@
       <h3>4. Alege locurile</h3>
       <div class="screen">ECRAN</div>
 
-      <div id="seats" class="seats"></div>
+      <div class="seats-wrapper">
+  <div id="seats" class="seats"></div>
+</div>
 
       <div class="legend">
   <span style="background: #d8f3dc;">Liber</span>
@@ -750,8 +768,8 @@
   function renderSeats() {
   const seatsContainer = document.getElementById("seats");
   seatsContainer.innerHTML = "";
-  seatsContainer.style.gridTemplateColumns = `repeat(${selectedHall.cols}, 54px)`;
-
+ seatsContainer.style.gridTemplateColumns = `repeat(${selectedHall.cols}, 54px)`;
+seatsContainer.style.gridAutoRows = "54px";
   const occupiedSeats = getOccupiedSeats();
 
   for (let i = 0; i < selectedHall.rows; i++) {
