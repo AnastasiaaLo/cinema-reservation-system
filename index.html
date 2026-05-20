@@ -194,40 +194,35 @@
       font-weight: bold;
     }
 
-    .seats {
-      display: grid;
-      gap: 8px;
-      justify-content: center;
-      margin-top: 20px;
-    }
+   .seat {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  border: 2px solid var(--black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: bold;
+  background: #d8f3dc;
+  text-align: center;
+  line-height: 1.1;
+  white-space: pre-line;
+  color: var(--black);
+}
 
-    .seat {
-      width: 54px;
-      height: 54px;
-      border-radius: 14px;
-      border: 2px solid var(--black);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      font-size: 11px;
-      font-weight: bold;
-      background: var(--mint);
-      text-align: center;
-      line-height: 1.1;
-      white-space: pre-line;
-    }
+.seat.selected {
+  background: #dbeafe;
+  transform: scale(1.08);
+}
 
-    .seat.selected {
-      background: var(--blue);
-      transform: scale(1.08);
-    }
-
-    .seat.occupied {
-      background: var(--red) !important;
-      cursor: not-allowed;
-      opacity: 1;
-    }
+.seat.occupied {
+  background: #fecaca !important;
+  cursor: not-allowed;
+  opacity: 1;
+  color: var(--black);
+}
 
     .legend {
       display: flex;
@@ -341,7 +336,37 @@
       border-radius: 12px;
       font-weight: bold;
     }
+.mini-screen {
+  background: var(--black);
+  color: var(--white);
+  text-align: center;
+  border-radius: 50%;
+  padding: 8px;
+  margin: 10px 0;
+  width: 260px;
+  letter-spacing: 3px;
+  font-size: 12px;
+}
 
+.mini-hall {
+  display: inline-grid;
+  gap: 5px;
+  margin: 10px 20px 25px 0;
+  vertical-align: top;
+}
+
+.mini-seat {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--black);
+  border-radius: 8px;
+  background: #d8f3dc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: bold;
+}
     footer {
       text-align: center;
       padding: 20px;
@@ -444,12 +469,12 @@
       <div id="seats" class="seats"></div>
 
       <div class="legend">
-        <span style="background: var(--mint);">Liber</span>
-        <span style="background: var(--blue);">Selectat</span>
-        <span style="background: var(--red);">Ocupat</span>
-        <span style="background: var(--mint);">VIP = loc VIP</span>
-        <span style="background: var(--mint);">LS = Love Seat</span>
-      </div>
+  <span style="background: #d8f3dc;">Liber</span>
+  <span style="background: #dbeafe;">Selectat</span>
+  <span style="background: #fecaca;">Ocupat</span>
+  <span style="background: #d8f3dc;">VIP = loc VIP</span>
+  <span style="background: #d8f3dc;">LS = Love Seat</span>
+</div>
 
       <div class="summary-box">
         <p>Film selectat: <strong id="selectedFilmText">Neselectat</strong></p>
@@ -501,56 +526,56 @@
     </div>
   </section>
 
-  <section id="about" class="page">
-    <h2>Despre cinema</h2>
+ <section id="about" class="page">
+  <h2>Despre cinema</h2>
 
-    <div class="card">
-      <h3>Descriere generală</h3>
-      <p>
-        Cinema Reservation este un cinematograf modern, organizat în mai multe săli cu niveluri diferite de confort.
-        Sistemul web permite utilizatorului să aleagă filmul dorit, sala potrivită, locurile disponibile și să finalizeze rezervarea online.
-      </p>
-      <p>
-        Fiecare sală are locuri normale, locuri VIP și locuri LS. Locurile libere sunt marcate cu verde,
-        locurile selectate sunt marcate cu albastru, iar locurile ocupate sunt marcate cu roșu.
-      </p>
-    </div>
+  <div class="card">
+    <h3>Descriere generală</h3>
+    <p>
+      Cinema Reservation este un cinematograf modern, creat pentru a oferi utilizatorilor o experiență rapidă și comodă de rezervare online.
+      Sistemul permite alegerea filmului, alegerea sălii, selectarea locurilor dorite și confirmarea rezervării.
+    </p>
+    <p>
+      Cinematograful este organizat în mai multe săli, fiecare având capacitate, tip de confort și prețuri diferite.
+      Locurile libere sunt afișate cu verde, locurile selectate cu albastru, iar locurile deja ocupate cu roșu.
+    </p>
+  </div>
 
-    <div class="card">
-      <h3>Tipuri de locuri</h3>
-      <ul>
-        <li><strong>Loc normal</strong> — loc standard pentru vizionarea filmului.</li>
-        <li><strong>VIP</strong> — loc cu confort sporit și preț mai mare.</li>
-        <li><strong>LS</strong> — Love Seat, loc special pentru două persoane sau zonă premium.</li>
-      </ul>
-    </div>
+  <div class="card">
+    <h3>Tipuri de locuri</h3>
+    <ul>
+      <li><strong>Loc normal</strong> — loc standard, potrivit pentru vizionarea obișnuită a filmului.</li>
+      <li><strong>VIP</strong> — loc cu confort sporit, amplasat în zona premium a sălii.</li>
+      <li><strong>LS</strong> — Love Seat, loc special pentru două persoane sau pentru zona cu confort superior.</li>
+    </ul>
+  </div>
 
-    <div class="card">
-      <h3>Capacitatea și structura sălilor</h3>
-      <p>
-        Mai jos sunt prezentate sălile cinematografului. Pentru fiecare sală este indicată capacitatea,
-        tipul sălii, prețurile și o schiță simplificată a așezării locurilor.
-      </p>
+  <div class="card">
+    <h3>Capacitatea și structura sălilor</h3>
+    <p>
+      Mai jos sunt prezentate toate sălile disponibile în cinematograf. Pentru fiecare sală este indicată capacitatea,
+      tipul sălii și o schiță simplificată a modului în care sunt amplasate locurile.
+    </p>
 
-      <div id="hallCapacityDescription"></div>
-    </div>
+    <div id="hallCapacityDescription"></div>
+  </div>
 
-    <div class="card">
-      <h3>Structuri de date și algoritmi utilizați</h3>
-      <p>
-        În aplicație sunt utilizate structuri de date de tip array de obiecte pentru filme, săli și rezervări.
-        Fiecare sală este reprezentată ca obiect cu număr de rânduri, număr de coloane și prețuri diferite pentru tipurile de locuri.
-      </p>
-      <ul>
-        <li>algoritm de generare automată a locurilor;</li>
-        <li>algoritm de verificare a locurilor ocupate;</li>
-        <li>algoritm de calcul al prețului total în MDL;</li>
-        <li>algoritm de blocare a locurilor deja rezervate;</li>
-        <li>algoritm de expirare a rezervărilor păstrate 30 de minute;</li>
-        <li>stocare online a rezervărilor în Firebase Firestore.</li>
-      </ul>
-    </div>
-  </section>
+  <div class="card">
+    <h3>Structuri de date și algoritmi utilizați</h3>
+    <p>
+      În aplicație sunt utilizate structuri de date de tip array de obiecte pentru filme, săli, locuri și rezervări.
+      Fiecare sală este reprezentată ca obiect cu rânduri, coloane și tipuri de locuri.
+    </p>
+    <ul>
+      <li>algoritm de generare automată a locurilor în funcție de rânduri și coloane;</li>
+      <li>algoritm de identificare a locurilor VIP și LS;</li>
+      <li>algoritm de verificare a locurilor ocupate;</li>
+      <li>algoritm de calcul al prețului total;</li>
+      <li>algoritm de blocare a locurilor deja rezervate;</li>
+      <li>stocare online a rezervărilor în Firebase Firestore.</li>
+    </ul>
+  </div>
+</section>
 
 </div>
 
@@ -723,42 +748,42 @@
   }
 
   function renderSeats() {
-    const seatsContainer = document.getElementById("seats");
-    seatsContainer.innerHTML = "";
-    seatsContainer.style.gridTemplateColumns = `repeat(${selectedHall.cols}, 54px)`;
+  const seatsContainer = document.getElementById("seats");
+  seatsContainer.innerHTML = "";
+  seatsContainer.style.gridTemplateColumns = `repeat(${selectedHall.cols}, 54px)`;
 
-    const occupiedSeats = getOccupiedSeats();
+  const occupiedSeats = getOccupiedSeats();
 
-    for (let i = 0; i < selectedHall.rows; i++) {
-      const rowLetter = String.fromCharCode(65 + i);
+  for (let i = 0; i < selectedHall.rows; i++) {
+    const rowLetter = String.fromCharCode(65 + i);
 
-      for (let j = 1; j <= selectedHall.cols; j++) {
-        const code = rowLetter + j;
-        const type = getSeatType(i);
+    for (let j = 1; j <= selectedHall.cols; j++) {
+      const code = rowLetter + j;
+      const type = getSeatType(i);
 
-        const seat = document.createElement("div");
-        seat.className = "seat";
+      const seat = document.createElement("div");
+      seat.className = "seat";
 
-        if (type === "vip") {
-          seat.textContent = code + "\nVIP";
-        } else if (type === "love") {
-          seat.textContent = code + "\nLS";
-        } else {
-          seat.textContent = code;
-        }
-
-        if (occupiedSeats.includes(code)) {
-          seat.classList.add("occupied");
-        }
-
-        seat.onclick = function() {
-          toggleSeat(code, type, seat);
-        };
-
-        seatsContainer.appendChild(seat);
+      if (type === "vip") {
+        seat.textContent = code + "\nVIP";
+      } else if (type === "love") {
+        seat.textContent = code + "\nLS";
+      } else {
+        seat.textContent = code;
       }
+
+      if (occupiedSeats.includes(code)) {
+        seat.classList.add("occupied");
+      }
+
+      seat.onclick = function() {
+        toggleSeat(code, type, seat);
+      };
+
+      seatsContainer.appendChild(seat);
     }
   }
+}
 
   function toggleSeat(code, type, element) {
     if (element.classList.contains("occupied")) {
@@ -1031,55 +1056,55 @@
     document.getElementById(id).textContent = text;
   }
 
-  function renderHallDescriptions() {
-    const box = document.getElementById("hallCapacityDescription");
-    box.innerHTML = "";
+function renderHallDescriptions() {
+  const box = document.getElementById("hallCapacityDescription");
+  box.innerHTML = "";
 
-    halls.forEach(hall => {
-      const div = document.createElement("div");
-      div.className = "card";
+  halls.forEach(hall => {
+    const div = document.createElement("div");
+    div.className = "card";
 
-      div.innerHTML = `
-        <h4>${hall.name}</h4>
-        <p><strong>Tip sală:</strong> ${hall.type}</p>
-        <p><strong>Capacitate:</strong> ${hall.rows * hall.cols} locuri</p>
-        <p>
-          <strong>Prețuri:</strong>
-          Normal - ${hall.normalPrice} MDL,
-          VIP - ${hall.vipPrice} MDL,
-          LS - ${hall.lovePrice} MDL
-        </p>
-        <p><strong>Schița sălii:</strong></p>
-        <div class="mini-screen">ECRAN</div>
-        <div class="mini-hall" id="miniHall${hall.id}"></div>
-        <p style="font-size: 14px;">VIP = loc VIP, LS = Love Seat</p>
-      `;
+    div.innerHTML = `
+      <h4>${hall.name}</h4>
+      <p><strong>Tip sală:</strong> ${hall.type}</p>
+      <p><strong>Capacitate:</strong> ${hall.rows * hall.cols} locuri</p>
+      <p>
+        <strong>Prețuri:</strong>
+        Normal - ${hall.normalPrice} MDL,
+        VIP - ${hall.vipPrice} MDL,
+        LS - ${hall.lovePrice} MDL
+      </p>
+      <p><strong>Schița sălii:</strong></p>
+      <div class="mini-screen">ECRAN</div>
+      <div class="mini-hall" id="miniHall${hall.id}"></div>
+      <p style="font-size: 14px;">VIP = loc VIP, LS = Love Seat</p>
+    `;
 
-      box.appendChild(div);
+    box.appendChild(div);
 
-      const mini = div.querySelector(`#miniHall${hall.id}`);
-      mini.style.gridTemplateColumns = `repeat(${hall.cols}, 30px)`;
+    const mini = div.querySelector(`#miniHall${hall.id}`);
+    mini.style.gridTemplateColumns = `repeat(${hall.cols}, 30px)`;
 
-      for (let i = 0; i < hall.rows; i++) {
-        const rowLetter = String.fromCharCode(65 + i);
+    for (let i = 0; i < hall.rows; i++) {
+      const rowLetter = String.fromCharCode(65 + i);
 
-        for (let j = 1; j <= hall.cols; j++) {
-          const miniSeat = document.createElement("div");
-          miniSeat.className = "mini-seat";
+      for (let j = 1; j <= hall.cols; j++) {
+        const miniSeat = document.createElement("div");
+        miniSeat.className = "mini-seat";
 
-          if (i >= hall.rows - 1) {
-            miniSeat.textContent = "LS";
-          } else if (i >= hall.rows - 3) {
-            miniSeat.textContent = "VIP";
-          } else {
-            miniSeat.textContent = rowLetter + j;
-          }
-
-          mini.appendChild(miniSeat);
+        if (i >= hall.rows - 1) {
+          miniSeat.textContent = "LS";
+        } else if (i >= hall.rows - 3) {
+          miniSeat.textContent = "VIP";
+        } else {
+          miniSeat.textContent = rowLetter + j;
         }
+
+        mini.appendChild(miniSeat);
       }
-    });
-  }
+    }
+  });
+}
 
   renderFilms();
   renderHalls();
